@@ -1,6 +1,5 @@
 require 'capistrano/ext/multistage'
 
-default_run_options[:pty] = true
 set :branch, "master"
 
 set :application, "FEMSA"
@@ -20,6 +19,8 @@ role :db, "ubiquitous.csf.itesm.mx"
 set :stages, "production"
 set :default_stage, "production"
 
+default_run_options[:pty] = true
+ssh_options[:forward_agent] = true
 
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"
@@ -28,10 +29,10 @@ set :default_stage, "production"
 # these http://github.com/rails/irs_process_scripts
 
 # If you are using Passenger mod_rails uncomment this:
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
+ namespace :deploy do
+   task :start do end
+   task :stop do end
+   task :restart, :roles => :app, :except => { :no_release => true } do
+     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+   end
+ end
