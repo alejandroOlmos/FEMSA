@@ -1,3 +1,5 @@
+require 'bundler/capistrano'
+
 set :domain, "ubiquitous.csf.itesm.mx"
 
 set :application, "FEMSA"
@@ -9,13 +11,18 @@ set :branch, "master"
 set :deploy_via, :remote_cache
 
 set :user, "acm-1015134"
-#ssh_options[:forward_agent] => true
-#default_run_options[:pty] = true
+set :use_sudo, false
+
+
+ssh_options[:forward_agent] = true
+default_run_options[:pty] = true
+
+set :rails_env, "production"
 
 
 # set :scm, :subversion
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `no
-set :use_sudo, false
+
 
 #role :web, domain                          # Your HTTP server, Apache/etc
 #role :app, domain                          # This may be the same as your `Web` server
