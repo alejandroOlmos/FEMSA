@@ -1,6 +1,6 @@
 FEMSA::Application.routes.draw do
 
-  scope "/femsaapp" do
+  scope "/~acm-1015134/pass/femsaapp" do
 
     get "pages/home"
 

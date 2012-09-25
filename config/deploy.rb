@@ -3,7 +3,7 @@ require 'bundler/capistrano'
 set :domain, "ubiquitous.csf.itesm.mx"
 
 set :application, "FEMSA"
-set :deploy_to, "/home/acm-1015134/html_container/FEMSA"
+set :deploy_to, "/home/acm-1015134/rails/FEMSA"
 
 set :scm, :git
 set :repository, "git@github.com:alejandroOlmos/FEMSA.git"
