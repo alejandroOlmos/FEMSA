@@ -20,10 +20,14 @@ role :db, domain, :primary => true # This is where Rails migrations will run
 role :db, domain
 
 set :deploy_to, applicationdir
-set :deploy_via, :export
+set :deploy_via, :remote_cache
 
 set :stages, "production"
 set :default_stage, "production"
+
+set :rails_env, "production"
+
+set :asset_env, "#{asset_env} RAILS_RELATIVE_URL_ROOT=/html_container/FEMSA"
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
