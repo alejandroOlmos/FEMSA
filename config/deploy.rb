@@ -1,23 +1,11 @@
 require 'bundler/capistrano'
 
-set :domain, "ubiquitous.csf.itesm.mx"
-
-set :application, "FEMSA"
-set :deploy_to, "/home/acm-1015134/rails/FEMSA"
-
-set :scm, :git
-set :repository, "git@github.com:alejandroOlmos/FEMSA.git"
-set :branch, "master"
-set :deploy_via, :remote_cache
-
 set :user, "acm-1015134"
-set :use_sudo, false
+set :domain, "ubiquitous.csf.itesm.mx"
+set :application, "FEMSA"
 
-
-ssh_options[:forward_agent] = true
-default_run_options[:pty] = true
-
-set :rails_env, "production"
+set :repository, "git@github.com:alejandroOlmos/FEMSA.git"
+set :deploy_to, "/home/acm-1015134/rails/FEMSA"
 
 
 # set :scm, :subversion
@@ -30,6 +18,15 @@ set :rails_env, "production"
 #role :db, domain
 
 server domain, :app, :web, :db, :primary => true
+
+default_run_options[:pty] = true
+
+set :deploy_via, :remote_cache
+set :scm, :git
+set :branch, "master"
+set :scm_verbose, true
+set :use_sudo, false
+set :rails_env, :production
 
 
 # if you want to clean up old releases on each deploy uncomment this:
