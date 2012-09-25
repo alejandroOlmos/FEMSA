@@ -1,20 +1,26 @@
 require 'capistrano/ext/multistage'
+require 'bundler/capistrano'
 
-set :branch, "master"
+set :user, 'acm-1015134'
+set :domain, 'ubiquitous.csf.itesm.mx'
+set :applicationdir , '/home/acm-1015134/html_container/FEMSA'
 
 set :application, "FEMSA"
 set :scm, :git
 set :repository, "git@github.com:alejandroOlmos/FEMSA.git"
+set :branch, 'master'
 
 # set :scm, :subversion
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `no
-set :user, "acm-1015134"
 set :use_sudo, false
 
-role :web, "ubiquitous.csf.itesm.mx"                          # Your HTTP server, Apache/etc
-role :app, "ubiquitous.csf.itesm.mx"                          # This may be the same as your `Web` server
-role :db, "ubiquitous.csf.itesm.mx", :primary => true # This is where Rails migrations will run
-role :db, "ubiquitous.csf.itesm.mx"
+role :web, domain                          # Your HTTP server, Apache/etc
+role :app, domain                          # This may be the same as your `Web` server
+role :db, domain, :primary => true # This is where Rails migrations will run
+role :db, domain
+
+set :deploy_to, applicationdir
+set :deploy_via, :export
 
 set :stages, "production"
 set :default_stage, "production"
