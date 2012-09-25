@@ -25,12 +25,12 @@ set :deploy_via, :remote_cache
 set :stages, "production"
 set :default_stage, "production"
 
-set :rails_env, "production"
+#set :rails_env, "production"
 
-set :asset_env, "#{asset_env} RAILS_RELATIVE_URL_ROOT=/html_container/FEMSA"
+#set :asset_env, "#{asset_env} RAILS_RELATIVE_URL_ROOT=/html_container/FEMSA"
 
 default_run_options[:pty] = true
-ssh_options[:forward_agent] = true
+#ssh_options[:forward_agent] = true
 
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"
