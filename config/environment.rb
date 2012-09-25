@@ -5,4 +5,4 @@ require File.expand_path('../application', __FILE__)
 FEMSA::Application.initialize!
 
 # Para que funcionen mis elementos estáticos js, css etc
-ENV['RAILS_RELATIVE_URL_ROOT'] = "/FEMSA"
+ENV['RAILS_RELATIVE_URL_ROOT'] = "/html_container/FEMSA"

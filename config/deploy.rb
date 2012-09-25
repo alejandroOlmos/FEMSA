@@ -1,36 +1,29 @@
-require 'capistrano/ext/multistage'
-require 'bundler/capistrano'
-
-set :user, 'acm-1015134'
-set :domain, 'ubiquitous.csf.itesm.mx'
-set :applicationdir , '/home/acm-1015134/html_container/FEMSA'
+set :domain, "ubiquitous.csf.itesm.mx"
 
 set :application, "FEMSA"
+set :deploy_to, "/home/acm-1015134/html_container/FEMSA"
+
 set :scm, :git
 set :repository, "git@github.com:alejandroOlmos/FEMSA.git"
-set :branch, 'master'
+set :branch, "master"
+set :deploy_via, :remote_cache
+
+set :user, "acm-1015134"
+#ssh_options[:forward_agent] => true
+#default_run_options[:pty] = true
+
 
 # set :scm, :subversion
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `no
 set :use_sudo, false
 
-role :web, domain                          # Your HTTP server, Apache/etc
-role :app, domain                          # This may be the same as your `Web` server
-role :db, domain, :primary => true # This is where Rails migrations will run
-role :db, domain
+#role :web, domain                          # Your HTTP server, Apache/etc
+#role :app, domain                          # This may be the same as your `Web` server
+#role :db, domain, :primary => true # This is where Rails migrations will run
+#role :db, domain
 
-set :deploy_to, applicationdir
-set :deploy_via, :remote_cache
+server domain, :app, :web, :db, :primary => true
 
-set :stages, "production"
-set :default_stage, "production"
-
-#set :rails_env, "production"
-
-#set :asset_env, "#{asset_env} RAILS_RELATIVE_URL_ROOT=/html_container/FEMSA"
-
-default_run_options[:pty] = true
-#ssh_options[:forward_agent] = true
 
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"
